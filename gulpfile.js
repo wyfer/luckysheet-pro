@@ -35,12 +35,12 @@ const paths = {
   staticDemoData: ["src/demoData/*.js"],
   staticCssImages: ["src/css/**", "!src/css/*.css"],
   destStaticHtml: ["../public/lib"],
-  destStaticFonts: ["./dist/fonts"],
-  destStaticAssets: ["./dist/assets"],
-  destStaticImages: ["./dist/plugins/images"],
-  destStaticExpendPlugins: ["./dist/expendPlugins"],
-  destStaticDemoData: ["./dist/demoData"],
-  destStaticCssImages: ["./dist/css"],
+  destStaticFonts: ["./libs/dist/fonts"],
+  destStaticAssets: ["./libs/dist/assets"],
+  destStaticImages: ["./libs/dist/plugins/images"],
+  destStaticExpendPlugins: ["./libs/dist/expendPlugins"],
+  destStaticDemoData: ["./libs/dist/demoData"],
+  destStaticCssImages: ["./libs/dist/css"],
   core: [
     "src/**/*.js",
     "!src/demoData/*.js",
@@ -61,11 +61,11 @@ const paths = {
   concatPlugins: "plugins.css",
   concatCss: "luckysheet.css",
   concatPluginsJs: "plugin.js",
-  destPluginsCss: ["./dist/plugins/css"],
-  destPlugins: ["./dist/plugins"],
-  destCss: ["./dist/css"],
-  destPluginsJs: ["./dist"],
-  dist: "./dist",
+  destPluginsCss: ["./libs/dist/plugins/css"],
+  destPlugins: ["./libs/dist/plugins"],
+  destCss: ["./libs/dist/css"],
+  destPluginsJs: ["./libs/dist"],
+  dist: "./libs/dist",
 };
 
 function clean() {
@@ -127,7 +127,7 @@ async function core(pluginsJsContent) {
         banner: { js: pluginsJsContent + '\n' + banner },
         target: ["es2018"],
         sourcemap: false,
-        outfile: "./dist/luckysheet.js",
+        outfile: "./libs/dist/luckysheet.js",
       });
     } else {
       esbuild.build({
@@ -139,7 +139,7 @@ async function core(pluginsJsContent) {
         banner: { js: pluginsJsContent + '\n' + banner },
         target: ["es2018"],
         sourcemap: false,
-        outfile: "./dist/luckysheet.js",
+        outfile: "./libs/dist/luckysheet.js",
       });
     }
   } catch (error) {
