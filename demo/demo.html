@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="./plugins/css/pluginsCss.css" />
+  <link rel="stylesheet" href="./plugins/plugins.css" />
+  <link rel="stylesheet" href="./css/luckysheet.css" />
+  <script src="./plugin.js"></script>
+</head>
+<body>
+  <div
+    id="luckysheet"
+    style="
+      margin: 0px;
+      padding: 0px;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0px;
+      top: 0px;
+    "
+  ></div>
+
+  <script type="module">
+    import luckysheet from "./luckysheet.min.js";
+    window.luckysheet = luckysheet;
+
+window.sheetCell = {
+	name: "Cell",
+	index: "Sheet_6az6nei65t1i_1596209937084",
+	order: "0",
+	status: 1,
+	celldata: [
+		{ r: 0, c: 0, v: { v: "A", ct: { fa: "General", t: "n" }, m: "1" } },
+		{ r: 0, c: 1, v: { v: "1", ct: { fa: "General", t: "n" }, m: "1" } },
+		{ r: 1, c: 0, v: { v: "B", ct: { fa: "General", t: "n" }, m: "1" } },
+		{ r: 1, c: 1, v: { v: "2", ct: { fa: "General", t: "n" }, m: "1" } },
+	],
+	config: {
+		borderInfo: [
+			{
+				rangeType: "cell",
+				value: {
+					row_index: 0,
+					col_index: 0,
+					// l: { style: 1, color: "#00ff00" },
+					// r: { style: 1, color: "#00ff00" },
+					// t: { style: 1, color: "#00ff00" },
+					// b: { style: 1, color: "#00ff00" },
+				},
+			},
+		],
+	},
+};
+
+
+    $(function () {
+      const id = Math.random().toString(16).slice(2, 8);
+      const username = `user_${id}`;
+
+      const options = {
+        container: "luckysheet",
+        lang: "zh",
+        // showinfobar: false,
+        plugins: ["fileImport", "fileExport"],
+        allowUpdate: false,
+        enableAddRow: false,
+        enablePage: false,
+        enableAddBackTop: false,
+        showtoolbarConfig: {
+          currencyFormat: false, //货币格式
+          percentageFormat: false, //百分比格式
+          numberDecrease: false, // '减少小数位数'
+          numberIncrease: false, // '增加小数位数
+          chart: false, // '图表'（图标隐藏，但是如果配置了chart插件，右击仍然可以新建图表）
+          postil: false, //'批注'
+          image:false, // '插入图片'
+          link:false, // '插入链接'
+          pivotTable: false, //'数据透视表'
+          frozenMode: false, // '冻结方式'
+          sortAndFilter: false, // '排序和筛选'
+          conditionalFormat: false, // '条件格式'
+          dataVerification: false, // '数据验证'
+          splitColumn: false, // '分列'
+          screenshot: false, // '截图'
+          superFormula: false, // 超级公式
+          // protection: false, // '工作表保护'
+          print: false, // '打印'
+        },
+        cellRightClickConfig: {
+          copyAs: false, // 复制为
+          chart: false, // 图表生成
+          image: false, // 插入图片
+          link: false, // 插入链接
+          data: false, // 数据验证
+          cellFormat: false // 设置单元格格式
+        },
+        data: [sheetCell],
+        hook: {
+          cellDragStop: function (cell, postion, sheetFile, ctx, event) {
+            console.info("cellDragStop");
+          },
+          rowTitleCellRenderBefore: function (rowNum, postion, ctx) {
+            // console.log(rowNum);
+          },
+          rowTitleCellRenderAfter: function (rowNum, postion, ctx) {
+            // console.log(ctx);
+          },
+          columnTitleCellRenderBefore: function (columnAbc, postion, ctx) {
+            // console.log(columnAbc);
+          },
+          columnTitleCellRenderAfter: function (columnAbc, postion, ctx) {
+            // console.log(postion);
+          },
+          cellRenderBefore: function (cell, postion, sheetFile, ctx) {
+            // console.log(cell,postion,sheetFile,ctx);
+          },
+          cellRenderAfter: function (cell, postion, sheetFile, ctx) {
+            // console.log(postion);
+          },
+          cellMousedownBefore: function (cell, postion, sheetFile, ctx) {
+            console.log("cellMousedownBefore");
+            // return false;
+          },
+          cellMousedown: function (cell, postion, sheetFile, ctx) {
+            console.log("cellMousedown");
+          },
+          sheetMousemove: function (cell, postion, sheetFile, moveState, ctx) {
+            // console.log(cell,postion,sheetFile,moveState,ctx);
+          },
+          sheetMouseup: function (cell, postion, sheetFile, moveState, ctx) {
+            console.log("sheetMouseup");
+          },
+          cellAllRenderBefore: function (data, sheetFile, ctx) {
+            // console.info(data,sheetFile,ctx)
+          },
+          updated: function (operate) {
+            // console.info(operate)
+          },
+          cellUpdateBefore: function (r, c, value, isRefresh) {
+            // console.info('cellUpdateBefore',r,c,value,isRefresh)
+          },
+          cellUpdated: function (r, c, oldValue, newValue, isRefresh) {
+            console.info('cellUpdated')
+          },
+          sheetActivate: function (index, isPivotInitial, isNewSheet) {
+            console.info("sheetActivate")
+          },
+          rangeSelect: function (index, sheet) {
+            console.info("rangeSelect")
+          },
+          commentInsertBefore: function (r, c) {
+            // console.info(r, c)
+          },
+          commentInsertAfter: function (r, c, cell) {
+            // console.info(r, c, cell)
+          },
+          commentDeleteBefore: function (r, c, cell) {
+            // console.info(r, c, cell)
+          },
+          commentDeleteAfter: function (r, c, cell) {
+            // console.info(r, c, cell)
+          },
+          commentUpdateBefore: function (r, c, value) {
+            // console.info(r, c, value)
+          },
+          commentUpdateAfter: function (r, c, oldCell, newCell) {
+            // console.info(r, c, oldCell, newCell)
+          },
+          cellEditBefore: function (range) {
+            // console.log('1')
+            // console.info(range)
+// 							const [row, column] = range[0].row;
+
+// 							const cellData = luckysheet.getCellValue(row, column, {
+// 	original: true
+// });
+
+// if(cellData) {
+// 	if(cellData.ct.fa === ';;;') {
+// 		return false;
+// 	}
+// }
+          },
+          workbookCreateAfter: function (json) {
+            console.info('workbook create after!!!!====',json)
+          },
+          rangePasteBefore: function (range, data) {
+            console.info('rangePasteBefore',range,data)
+            // return false; //Can intercept paste
+          },
+          rangeDeleteBefore: function (range, data) {
+            console.dir(111)
+          },
+          setDynamicValue(selectData,
+      sheetFile,
+      luckysheetTableContent){
+            console.log('setDynamic11111111Value')
+            console.log(selectData,
+      sheetFile,
+      luckysheetTableContent)
+          },
+        },
+        menuHandler: {
+          exit() {
+            console.log("==> 点击了退出按钮");
+          },
+          shear() {
+            console.log("==> 点击了分享按钮");
+          },
+
+          // 菜单解密
+          decrypt(password) {
+            // 执行后续 server 操作
+            console.log("==> 解密文档：", password);
+            // 解密过程需要校验密码，因此需要提供返回值
+            return password === "123456";
+          },
+
+          // 菜单加密
+          encryption: (password) => {
+            // 拿到password可执行后续 server操作
+            console.log("==> 文档已加密:", password);
+          },
+
+          // 打开文档输入密码 标记文档是否加密
+          // openDocumentPassword: (password) => {
+          // 	console.log("==> 用户输入密码:", password);
+          // 	return password === "123456";
+          // },
+        },
+      };
+      options.loading = {
+        image: () => {
+          return `<svg viewBox="25 25 50 50" class="circular">
+        <circle cx="50" cy="50" r="20" fill="none"></circle>
+        </svg>`;
+        },
+        imageClass: "loadingAnimation",
+      };
+      luckysheet.create(options);
+
+      
+
+        fetch({
+          url: `https://www-crdedev.uni-orange.com/resApi/WebAPI/Reference/Get?tenant=5867&id=809678432897077248`,
+          responseType: "blob",
+        }).then(res => {
+          console.log(res);
+        })
+
+        // const buffer = resultRes.data;
+        // // 提取名称
+        // let fileName = resultRes.headers?.["content-disposition"].split("=")[1];
+
+        // const excelFile = new File([buffer], fileName, {
+        //   type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        // });
+
+        // if (this.$refs.dExcelRef?.luckysheet) {
+        //   this.$refs.dExcelRef.luckysheet.importFile(excelFile);
+        // }
+    });
+  </script>
+</body>
+</html>

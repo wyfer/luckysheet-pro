@@ -1,0 +1,84 @@
+/* 重构 UI */
+:root {
+  /* 麦苗绿 */
+  --luckysheet-main-color: #fc5900;
+  --luckysheet-main-color-rgb: 252, 89, 0;
+  --luckysheet-main-color-a1: rgba(252, 89, 0, 0.1);
+  --luckysheet-main-color-a2: rgba(252, 89, 0, 0.2);
+  --luckysheet-main-color-a3: rgba(252, 89, 0, 0.3);
+  --luckysheet-main-color-a4: rgba(252, 89, 0, 0.4);
+  --luckysheet-main-color-a5: rgba(252, 89, 0, 0.5);
+  --luckysheet-main-color-a6: rgba(252, 89, 0, 0.6);
+  --luckysheet-main-color-a7: rgba(252, 89, 0, 0.7);
+  --luckysheet-main-color-a8: rgba(252, 89, 0, 0.8);
+  --luckysheet-main-color-a9: rgba(52, 23, 8, 0.9);
+
+  /* 39,79,238 */
+  --luckysheet-main-color-1: #ebeefa;
+  /* 235,250,240 */
+  --luckysheet-main-color-2: #ede7df;
+  /* 233,237,228 */
+  --luckysheet-main-color-3: #e0d9d1;
+  /* 209,224,215 */
+  --luckysheet-main-color-4: #d4c0a3;
+  /* 163,212,185 */
+  --luckysheet-main-color-5: #c7ae79;
+  /* 121,199,159 */
+  --luckysheet-main-color-6: #fc5900;
+  /* 85,137,138 */
+  --luckysheet-main-color-7: #94603b;
+  /* 59,148,108 */
+  --luckysheet-main-color-8: #6e5126;
+  /* 38,110,80 */
+  --luckysheet-main-color-9: #472815;
+  /* 21,71,52 */
+  --luckysheet-main-color-10: #0a0d21;
+
+  --luckysheet-border-radius: 2px;
+  --luckysheet-error-color: #f56c6c;
+  --luckysheet-warn-color: #E6A23C;
+  --luckysheet-success-color: #67C23A
+}
+
+/* 自定义loading演示样式 */
+@keyframes luckysheet-loading-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes luckysheet-loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
+}
+
+.loadingAnimation {
+  width: 3em;
+  height: 3em;
+  animation: luckysheet-loading-rotate 2s linear infinite;
+}
+
+.loadingAnimation circle {
+  animation: luckysheet-loading-dash 1.5s ease-in-out infinite;
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  stroke-width: 2;
+  stroke: currentColor;
+  stroke-linecap: round;
+}
