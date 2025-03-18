@@ -1,6 +1,6 @@
 {
   "name": "luckysheet-pro",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/luckysheet.js",
   "module": "dist/luckysheet.js",
   "exports": {

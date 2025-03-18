@@ -211,8 +211,8 @@ const dev = series(
     copyStaticDemoData,
     copyStaticCssImages,
     core,
-    watcher,
-  )
+  ),
+  watcher,
 );
 
 const build = series(

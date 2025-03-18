@@ -22010,7 +22010,7 @@ exports.getXmlAttibute = getXmlAttibute;
 */
 
 function getColumnWidthPixel(columnWidth) {
-  var pix = Math.round((columnWidth - 0.83) * 8 + 5);
+  var pix = Math.round((columnWidth) * 6);
   return pix;
 }
 
