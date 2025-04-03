@@ -1,12 +1,13 @@
 {
   "name": "luckysheet-pro",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/luckysheet.js",
   "module": "dist/luckysheet.js",
   "exports": {
     ".": "./dist/luckysheet.js",
     "./css/luckysheet.css": "./dist/css/luckysheet.css",
-    "./css/pluginsCss.css": "./dist/plugins/css/pluginsCss.css"
+    "./css/pluginsCss.css": "./dist/plugins/css/pluginsCss.css",
+    "./css/plugins.css": "./dist/plugins/plugins.css"
   },
   "files": [
     "dist"

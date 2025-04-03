@@ -1,11 +1,12 @@
 {
   "name": "luckysheet-pro",
-  "version": "2.1.14",
+  "version": "2.1.15",
   "main": "dist/luckysheet.js",
   "module": "dist/luckysheet.js",
   "exports": {
     "./css/luckysheet.css": "./dist/css/luckysheet.css",
-    "./css/pluginsCss.css": "./dist/plugins/css/pluginsCss.css"
+    "./css/pluginsCss.css": "./dist/plugins/css/pluginsCss.css",
+    "./css/plugins.css": "./dist/plugins/plugins.css"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
