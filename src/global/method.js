@@ -522,6 +522,23 @@ const method = {
         }
 
         return true;
+    },
+
+    /**
+     * 获取单元格的值
+     * @param {name} 函数名称
+     * @param {arguments} 函数参数
+     */
+    setCellShowValue:function(){
+        if(luckysheetConfigsetting.hook && luckysheetConfigsetting.hook["setCellShowValue"]!=null && (typeof luckysheetConfigsetting.hook["setCellShowValue"] == "function")){
+            var args = Array.prototype.slice.apply(arguments);
+            let ret = luckysheetConfigsetting.hook["setCellShowValue"].apply(this, args);
+            if(ret){
+                return ret;
+            }
+        }
+
+        return "";
     }
 
 }

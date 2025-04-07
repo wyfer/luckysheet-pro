@@ -1,7 +1,7 @@
 import { isRealNum, valueIsError } from './validate';
 import { isdatetime } from './datecontroll';
 import { getcellvalue } from './getdata';
-import {generateDynamicShowStr} from '../utils/dynamicUtils';
+import method from "./method";
 import numeral from 'numeral';
 
 var SSF = ({});
@@ -1426,7 +1426,11 @@ var make_ssf = function make_ssf(SSF) {
                 if (fmt == "m/d/yy" && o.dateNF) sfmt = o.dateNF;
                 // 兼容自定义格式
                 else if(fmt === ';;;'){
-                    return generateDynamicShowStr(v);
+                    const sv = method.setCellShowValue(fmt, v);
+                    if(sv) {
+                        return sv;
+                    }
+                    return v;
                 }
                 else sfmt = fmt;
                 break;

@@ -3,12 +3,15 @@ export function parseDynamicStr(str) {
   const isAttr = str.startsWith('bindData:');
   const isRowAttr = str.startsWith('bindRowData:');
 
+  let isSupplierAttr = false;
+
   let reg = /\$\{([^}]+)\}/g;
   let match = reg.exec(str);
 
   let result = {
     isAttr,
     isRowAttr,
+    isSupplierAttr,
     data: {
       attrType: "",
       attrTypeName: "",
@@ -20,6 +23,11 @@ export function parseDynamicStr(str) {
 
   if (match) {
     const [attrType, attrTypeName, attrValue, attrValueName, dateFormat] = match[1].split("/");
+
+    // 细化判断
+    // 是否是供应商属性
+    isSupplierAttr = attrType === "SUPPLIER_DATA";
+    result.isSupplierAttr = isSupplierAttr;
 
     result.data = {
       attrType,
@@ -37,7 +45,7 @@ export function parseDynamicStr(str) {
 export function generateDynamicShowStr(str) {
   if(str == '' || str == undefined || str == null) return '';
 
-  const {isAttr, isRowAttr, data} = parseDynamicStr(str);
+  const {isAttr, isRowAttr, isSupplierAttr,  data} = parseDynamicStr(str);
   
   const {attrTypeName,attrValueName} = data;
   // 如果是对象，通过Object.values转为数组
@@ -45,7 +53,11 @@ export function generateDynamicShowStr(str) {
 
   // return (isRowAttr ? "[R]" : "") + "[" + d.join("/") + "]";
 
-  return (isRowAttr ? "[R]" : "") + "[" + attrValueName + "]";
+  if(isRowAttr) {
+    return "[R]" + (isSupplierAttr ? "[Supp.]" : "") + "[" + attrValueName + "]";
+  }else {
+    return "[" + attrValueName + "]";
+  }
 }
 
 // 生成${}形式属性
